@@ -15,12 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path, include
-
-from two_factor.urls import urlpatterns as tf_urls
+from django.contrib.auth import views as auth_views
+from django.urls import include, path, reverse
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    url(r'', include(tf_urls)),
-    url(r'', include('user_sessions.urls', 'user_sessions')),
+    url(r"", include("user_sessions.urls", "user_sessions")),
+    url(
+        r"^login/$",
+        auth_views.LoginView.as_view(template_name="auth/login.html"),
+        name="login",
+    ),
+    url(r"^logout/$", auth_views.LogoutView.as_view(), name="logout"),
+    path("", RedirectView.as_view(pattern_name="profile:profile"), name="index"),
+    path("profile/", include("unilogin.apps.profile.urls", namespace="profile")),
 ]

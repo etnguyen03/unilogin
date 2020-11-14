@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,12 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Django User Sessions
     "user_sessions",
-    # Django 2FA
-    'django_otp',
-    'django_otp.plugins.otp_static',
-    'django_otp.plugins.otp_totp',
-    'two_factor',
-    'otp_yubikey',
+    # Crispy Forms
+    "crispy_forms",
     # Unilogin
     "unilogin",
     "unilogin.apps.users",
@@ -52,13 +48,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "user_sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    'django_otp.middleware.OTPMiddleware',
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "x_forwarded_for.middleware.XForwardedForMiddleware",
 ]
 
 ROOT_URLCONF = "unilogin.urls"
@@ -111,6 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Silenced for django-user-sessions
+SILENCED_SYSTEM_CHECKS = ["admin.E410"]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -130,11 +130,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-SESSION_ENGINE = 'user_sessions.backends.db'
+SESSION_ENGINE = "user_sessions.backends.db"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # User model
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_URL = 'two_factor:login'
-LOGIN_REDIRECT_URL = 'two_factor:profile'
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "profile:profile"
+LOGOUT_REDIRECT_URL = "profile:profile"
+
+try:
+    from .secret import *
+except ImportError:
+    pass

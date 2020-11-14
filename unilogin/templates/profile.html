@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Profile</h1>
+    <table class="table">
+        <thead>
+            <th scope="col">Attribute</th>
+            <th scope="col">Value</th>
+        </thead>
+        <tbody>
+            {% for key, value in USER_DETAILS.items %}
+                <tr>
+                    <th scope="row">{{ key }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if ALLOW_USERS_MODIFY_DETAILS %}
+        <p>
+            To modify your details, click <a href="{% url 'profile:settings' user_id %}">here</a>.
+        </p>
+    {% endif %}
+
+    <h2>Manage User Sessions</h2>
+{% endblock %}
