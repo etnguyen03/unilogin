@@ -44,6 +44,19 @@ The last line starts a `gunicorn` server.
 In production, you should use a reverse proxy (Nginx?) that sets the
 `X_FORWARDED_FOR` header to the client's actual IP.
 
+## Docker Deployment
+
+First, download `unilogin/settings/secret.sample.py`, name it `secret.py`, and configure.
+
+Then, you can use something like this:
+
+```bash
+docker run --restart=unless-stopped -p 8000:8000 -d -v $PWD/secret.py:/app/unilogin/settings/secret.py etnguyen03/unilogin
+```
+
+However, you would likely need a database container. A `docker-compose.yml` is upcoming.
+
+
 ---
 
 Copyright © 2020 Ethan Nguyen and contributors. All rights reserved.
