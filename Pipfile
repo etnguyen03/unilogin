@@ -25,6 +25,7 @@ django-cors-middleware = "*"
 black = "==20.8b1"
 isort = "*"
 coverage = "*"
+coveralls = "*"
 
 [requires]
 python_version = "3.8"

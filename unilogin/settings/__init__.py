@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "useraudit",
     # OAuth
     "oauth2_provider",
-    'corsheaders',
+    "corsheaders",
     # Unilogin
     "unilogin",
     "unilogin.apps.users",
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "user_sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -149,6 +149,18 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "profile:profile"
 LOGOUT_REDIRECT_URL = "profile:profile"
+
+##########
+# The settings below are defined in secret.py, but
+# they are redefined here so that tests pass.
+##########
+
+ALLOW_USERS_MODIFY_DETAILS = True
+USERS_MODIFY_FIELDS = ["first_name", "last_name", "username", "email"]
+GEOIP_PATH = None
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.example\.com$",
+]
 
 try:
     from .secret import *
