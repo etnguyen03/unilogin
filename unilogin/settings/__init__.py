@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "user_sessions",
     # Crispy Forms
     "crispy_forms",
+    # User audit
+    "useraudit",
     # Unilogin
     "unilogin",
     "unilogin.apps.users",
