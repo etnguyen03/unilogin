@@ -6,5 +6,5 @@ app_name = "profile"
 
 urlpatterns = [
     path("", views.profile_view, name="profile"),
-    path("settings/<int:pk>", views.UpdateUserView.as_view(), name="settings")
+    path("settings/<int:pk>", views.UpdateUserView.as_view(), name="settings"),
 ]

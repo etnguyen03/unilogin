@@ -28,3 +28,9 @@ USERS_MODIFY_FIELDS = ["first_name", "last_name", "username", "email"]
 # See https://docs.djangoproject.com/en/3.1/ref/contrib/gis/geoip2
 # for more details.
 GEOIP_PATH = "unilogin/geolite/"
+
+# CORS allowed origins
+# This is a list of regular expressions where requests can be sent from
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.example\.com$",
+]

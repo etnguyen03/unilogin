@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     "crispy_forms",
     # User audit
     "useraudit",
+    # OAuth
+    "oauth2_provider",
+    'corsheaders',
     # Unilogin
     "unilogin",
     "unilogin.apps.users",
@@ -50,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "user_sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

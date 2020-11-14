@@ -30,4 +30,5 @@ urlpatterns = [
     url(r"^logout/$", auth_views.LogoutView.as_view(), name="logout"),
     path("", RedirectView.as_view(pattern_name="profile:profile"), name="index"),
     path("profile/", include("unilogin.apps.profile.urls", namespace="profile")),
+    path("oauth2/", include("oauth2_provider.urls", namespace="oauth2_provider")),
 ]
