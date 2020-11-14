@@ -23,3 +23,8 @@ ALLOW_USERS_MODIFY_DETAILS = True
 # Only relevant if ALLOW_USERS_MODIFY_DETAILS is set to True.
 # The possible values are "first_name", "last_name", "username", and "email".
 USERS_MODIFY_FIELDS = ["first_name", "last_name", "username", "email"]
+
+# Path to a GeoLite database
+# See https://docs.djangoproject.com/en/3.1/ref/contrib/gis/geoip2
+# for more details.
+GEOIP_PATH = "unilogin/geolite/"

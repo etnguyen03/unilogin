@@ -41,6 +41,9 @@ pipenv run gunicorn unilogin.wsgi
 
 The last line starts a `gunicorn` server.
 
+In production, you should use a reverse proxy (Nginx?) that sets the
+`X_FORWARDED_FOR` header to the client's actual IP.
+
 ---
 
 Copyright © 2020 Ethan Nguyen and contributors. All rights reserved.
