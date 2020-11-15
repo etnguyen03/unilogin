@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     # OAuth
     "oauth2_provider",
     "corsheaders",
+    # Django Breadcrumbs
+    "django_bootstrap_breadcrumbs",
     # Unilogin
     "unilogin",
     "unilogin.apps.users",

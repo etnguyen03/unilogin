@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Profile" "profile:profile" %}
+{% endblock %}
+
 {% block content %}
     <h1>Profile</h1>
     <table class="table">

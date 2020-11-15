@@ -1,1 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'profile.html' %}
+
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Session Management" "user_sessions:session_list" %}
+{% endblock %}

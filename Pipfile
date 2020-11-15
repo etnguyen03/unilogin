@@ -20,6 +20,7 @@ mysqlclient = "*"
 cx-oracle = "*"
 django-mssql-backend = "*"
 django-cors-middleware = "*"
+django-bootstrap-breadcrumbs = "*"
 
 [dev-packages]
 black = "==20.8b1"
