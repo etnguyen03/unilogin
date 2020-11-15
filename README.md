@@ -1,3 +1,7 @@
+## RETIRED
+
+I made this before I found Keycloak. I switched to Keycloak. Thus, I won't be maintaining this anymore. (However, I'll leave everything up in case someone will benefit from it.)
+
 # unilogin
 
 SSO using Django and OAuth
