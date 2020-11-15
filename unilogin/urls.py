@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path, reverse
 from django.views.generic import RedirectView
+from oauth2_provider.views import AuthorizationView, RevokeTokenView, TokenView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -30,5 +31,9 @@ urlpatterns = [
     url(r"^logout/$", auth_views.LogoutView.as_view(), name="logout"),
     path("", RedirectView.as_view(pattern_name="profile:profile"), name="index"),
     path("profile/", include("unilogin.apps.profile.urls", namespace="profile")),
-    path("oauth2/", include("oauth2_provider.urls", namespace="oauth2_provider")),
+    # Django OAuth Toolkit doesn't restrict admin views to staff,
+    # so I have to specify relevant ones manually here.
+    url(r"^oauth2/authorize/$", AuthorizationView.as_view(), name="authorize"),
+    url(r"^oauth2/token/$", TokenView.as_view(), name="token"),
+    url(r"^oauth2/revoke_token/$", RevokeTokenView.as_view(), name="revoke-token"),
 ]
