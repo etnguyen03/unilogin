@@ -31,6 +31,7 @@ urlpatterns = [
     url(r"^logout/$", auth_views.LogoutView.as_view(), name="logout"),
     path("", RedirectView.as_view(pattern_name="profile:profile"), name="index"),
     path("profile/", include("unilogin.apps.profile.urls", namespace="profile")),
+    path("api/", include("unilogin.apps.api.urls", namespace="api")),
     # Django OAuth Toolkit doesn't restrict admin views to staff,
     # so I have to specify relevant ones manually here.
     url(r"^oauth2/authorize/$", AuthorizationView.as_view(), name="authorize"),

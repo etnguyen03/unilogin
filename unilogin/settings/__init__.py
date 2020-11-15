@@ -46,11 +46,14 @@ INSTALLED_APPS = [
     # OAuth
     "oauth2_provider",
     "corsheaders",
+    # REST Framework (API)
+    "rest_framework",
     # Django Breadcrumbs
     "django_bootstrap_breadcrumbs",
     # Unilogin
     "unilogin",
     "unilogin.apps.users",
+    "unilogin.apps.api",
 ]
 
 MIDDLEWARE = [
@@ -151,6 +154,17 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "profile:profile"
 LOGOUT_REDIRECT_URL = "profile:profile"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
 
 ##########
 # The settings below are defined in secret.py, but
